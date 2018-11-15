@@ -1,14 +1,12 @@
-import tensorflow as tf
 import numpy as np
-import math
 
 from tensorflow import keras
 
 
 def train(x, y, input_dim, epoch):
     model = keras.Sequential()
-    model.add(keras.layers.Dense(8, input_dim=input_dim, activation='sigmoid'))
-    model.add(keras.layers.Dense(1, activation='sigmoid'))
+    model.add(keras.layers.Dense(8, input_dim=input_dim, activation='relu'))
+    model.add(keras.layers.Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(np.array(x), np.array(y), epochs=epoch, batch_size=2, verbose=2)
     return model

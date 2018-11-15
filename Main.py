@@ -37,7 +37,7 @@ if __name__ == '__main__':
     model = ann.load_model('model')
     model.compile(loss='mean_squared_error', optimizer='adam')
 
-    data_test = dh.data_norm(data_test)
+    # data_test = dh.data_norm(data_test)
     x_test, y_test = dh.generate_series(data_test, 3)
     print('MSE data uji : {}'.format(ann.evaluate(x_test, y_test, model)))
     result = ann.predict(x_test, model)
