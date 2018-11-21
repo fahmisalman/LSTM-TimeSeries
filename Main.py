@@ -18,17 +18,18 @@ def load_excel(filename):
 
 if __name__ == '__main__':
 
-    file_train = 'DataTrain.xlsx'
-    data_train = load_excel(file_train)
-
-    # Normalisasi
-    data_train = dh.data_norm(data_train)
-    x_train, y_train = dh.generate_series(data_train, 3)
-
-    # Training
-    model = ann.train(x_train, y_train, 3, 200)
-    print('MSE data latih : {}'.format(ann.evaluate(x_train, y_train, model)))
-    ann.save_model(model, 'model')
+    # file_train = 'DataTrain.xlsx'
+    # data_train = load_excel(file_train)
+    #
+    # # Normalisasi
+    # data_train = dh.data_norm(data_train)
+    # x_train, y_train = dh.generate_series(data_train, 3)
+    #
+    # # Training
+    # model = ann.train(x_train, y_train, 3, 5)
+    # # model = ann.train(data_train, y_train, 3, 200)
+    # print('MSE data latih : {}'.format(ann.evaluate(x_train, y_train, model)))
+    # ann.save_model(model, 'model')
 
     # Testing
     file_test = 'DataTest.xlsx'
@@ -37,9 +38,13 @@ if __name__ == '__main__':
     model = ann.load_model('model')
     model.compile(loss='mean_squared_error', optimizer='adam')
 
-    # data_test = dh.data_norm(data_test)
+    data_test = dh.data_norm(data_test)
     x_test, y_test = dh.generate_series(data_test, 3)
     print('MSE data uji : {}'.format(ann.evaluate(x_test, y_test, model)))
     result = ann.predict(x_test, model)
 
-    plot_timeseries(result)
+    # plot_timeseries(result)
+
+    plt.plot(result)
+    plt.plot(y_test)
+    plt.show()
