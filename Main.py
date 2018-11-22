@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import datahandler as dh
-import numpy as np
 # import ANN as ann
 import LSTM as lstm
 import xlrd
@@ -50,6 +49,6 @@ if __name__ == '__main__':
 
     # plot_timeseries(result)
 
-    plt.plot(result)
-    plt.plot(y_test)
-    plt.show()
+    # plt.plot(result)
+    # plt.plot(y_test)
+    # plt.show()

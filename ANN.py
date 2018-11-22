@@ -1,28 +1,21 @@
 import numpy as np
 
 from tensorflow import keras
-from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Dense
 
 
 def train(x, y, input_dim, epoch):
-    model = keras.Sequential()
-    # model.add(keras.layers.Dense(8, input_dim=input_dim, activation='relu'))
-    model.add(LSTM(256, input_shape=(input_dim, 1)))
+    model = Sequential()
+    model.add(keras.layers.Dense(8, input_dim=input_dim, activation='relu'))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
-    x = np.array(x)
-    x = x.reshape((x.shape[0], x.shape[1], 1))
-    model.fit(x, np.array(y), epochs=epoch, batch_size=2, verbose=2)
+    model.fit(x, y, epochs=epoch, batch_size=2, verbose=2)
     return model
 
 
 def evaluate(x, y, model):
-    x = np.array(x)
-    print(x.shape[0])
-    print(x.shape[1])
-    x = x.reshape((x.shape[0], x.shape[1], 1))
-    print(x)
-    mse = model.evaluate(x, np.array(y), verbose=0)
+    mse = model.evaluate(x, y, verbose=0)
     return mse
 
 

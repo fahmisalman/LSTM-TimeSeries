@@ -9,12 +9,12 @@ def train(x, y, input_dim, epoch, hidden=100):
     model.add(LSTM(hidden, input_shape=(input_dim, 1)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
-    model.fit(x, y, epochs=epoch, batch_size=2, verbose=1)
+    model.fit(x, y, epochs=epoch, batch_size=100, verbose=2)
     return model
 
 
 def evaluate(x, y, model):
-    mse = model.evaluate(x, y, verbose=1)
+    mse = model.evaluate(x, y, verbose=0)
     return mse
 
 
