@@ -16,4 +16,4 @@ def generate_series(data, series):
     for i in range(len(data)-series):
         x.append(data[i:i + series])
         y.append(data[i + series])
-    return x, y
+    return np.array(x), np.array(y)

@@ -4,22 +4,17 @@ from tensorflow import keras
 from tensorflow.keras.layers import LSTM, Dense
 
 
-def train(x, y, input_dim, epoch):
+def train(x, y, input_dim, epoch, hidden=100):
     model = keras.Sequential()
-    # model.add(keras.layers.Dense(8, input_dim=input_dim, activation='relu'))
-    model.add(LSTM(256, input_shape=input_dim))
+    model.add(LSTM(hidden, input_shape=(input_dim, 1)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
-    x = np.array(x)
-    x = x.reshape((x.shape[0], x.shape[1], 1))
-    model.fit(x, np.array(y), epochs=epoch, batch_size=2, verbose=0)
+    model.fit(x, y, epochs=epoch, batch_size=2, verbose=1)
     return model
 
 
 def evaluate(x, y, model):
-    x = np.array(x)
-    x = x.reshape((x.shape[0], x.shape[1]))
-    mse = model.evaluate(x, np.array(y), verbose=0)
+    mse = model.evaluate(x, y, verbose=1)
     return mse
 
 
@@ -38,6 +33,4 @@ def load_model(s):
 
 
 def predict(x, model):
-    x = np.array(x)
-    x = x.reshape((x.shape[0], x.shape[1], 1))
-    return model.predict(np.array(x))
+    return model.predict(x)
