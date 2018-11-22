@@ -1,12 +1,10 @@
-import numpy as np
-
 from tensorflow import keras
 from tensorflow.keras.layers import LSTM, Dense
 
 
-def train(x, y, input_dim, epoch, hidden=100):
+def train(x, y, epoch=20, hidden=100):
     model = keras.Sequential()
-    model.add(LSTM(hidden, input_shape=(input_dim, 1)))
+    model.add(LSTM(hidden, input_shape=(x.shape[1], 1)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
     model.fit(x, y, epochs=epoch, batch_size=100, verbose=2)

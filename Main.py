@@ -29,7 +29,7 @@ if __name__ == '__main__':
     x_train = x_train.reshape((x_train.shape[0], x_train.shape[1], 1))
 
     # Training
-    model = lstm.train(x_train, y_train, 3, 20)
+    model = lstm.train(x_train, y_train, epoch=100)
     print('MSE data latih : {}'.format(lstm.evaluate(x_train, y_train, model)))
     lstm.save_model(model, 'model')
 
@@ -47,8 +47,4 @@ if __name__ == '__main__':
     print('MSE data uji : {}'.format(lstm.evaluate(x_test, y_test, model)))
     result = lstm.predict(x_test, model)
 
-    # plot_timeseries(result)
-
-    # plt.plot(result)
-    # plt.plot(y_test)
-    # plt.show()
+    plot_timeseries(result)
