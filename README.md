@@ -1,2 +1,2 @@
-# ANN-TimeSeries
-Gold price prediction using Back Propagation Neural Network with Keras
+# LSTM-TimeSeries
+Gold price prediction using Long Short Term Memory with Keras
