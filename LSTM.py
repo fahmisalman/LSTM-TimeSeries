@@ -1,9 +1,9 @@
-from tensorflow import keras
+from tensorflow.keras import Sequential, models
 from tensorflow.keras.layers import LSTM, Dense
 
 
 def train(x, y, epoch=20, hidden=100):
-    model = keras.Sequential()
+    model = Sequential()
     model.add(LSTM(hidden, input_shape=(x.shape[1], 1)))
     model.add(Dense(1))
     model.compile(loss='mean_squared_error', optimizer='adam')
@@ -25,7 +25,7 @@ def save_model(model, s):
 
 def load_model(s):
     model_json = open('model/%s.json' % s, 'r').read()
-    model = keras.models.model_from_json(model_json)
+    model = models.model_from_json(model_json)
     model.load_weights("model/%s.h5" % s)
     return model
 
