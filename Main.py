@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import datahandler as dh
-# import ANN as ann
 import LSTM as lstm
 import xlrd
 
